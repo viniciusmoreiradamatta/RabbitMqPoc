@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  rabbitmq:
+   hostname: localhost   
+   build:
+    context: ./rabbit
+   ports:
+    - "15672:15672"
+    - "5672:5672" 
+    - "15692:15692" 
+   volumes:
+    - mq_data:/var/lib/rabbitmq/mnesia
+   networks:
+    - poc
+volumes:
+  mq_data:
+
+networks:
+  poc:
+    driver: bridge
